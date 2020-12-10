@@ -6448,6 +6448,11 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
   integrity sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==
 
+random-string-simple@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/random-string-simple/-/random-string-simple-1.0.1.tgz#d549fd6881853f2ef15f8d7b2cef635dfe410f55"
+  integrity sha512-bzfhFALJfs44tFaYJXccf/vMGQzVALhQmwF4cOnV+v3gXVxBrVDnoDSYIeomEsLvAww3ffwJ2eTl+ydl3zuUBQ==
+
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"

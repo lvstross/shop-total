@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import ShopTotalScreen from '../screens/ShopTotal/ShopTotalScreen';
+import InfoScreen from '../screens/InfoScreen';
+import { BottomTabParamList, ShopTotalParamList, InfoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -44,30 +44,30 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const ShopTotalStack = createStackNavigator<ShopTotalParamList>();
 
 function TabOneNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
+    <ShopTotalStack.Navigator>
+      <ShopTotalStack.Screen
+        name="ShopTotalScreen"
+        component={ShopTotalScreen}
         options={{ headerTitle: 'Shop Total' }}
       />
-    </TabOneStack.Navigator>
+    </ShopTotalStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const InfoStack = createStackNavigator<InfoParamList>();
 
 function TabTwoNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+    <InfoStack.Navigator>
+      <InfoStack.Screen
+        name="InfoScreen"
+        component={InfoScreen}
         options={{ headerTitle: 'Info' }}
       />
-    </TabTwoStack.Navigator>
+    </InfoStack.Navigator>
   );
 }
