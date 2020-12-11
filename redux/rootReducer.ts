@@ -2,6 +2,6 @@ import { combineReducers } from 'redux';
 import reducer from './ShopItems/reducers';
 
 const rootReducer = combineReducers({
-    counter: reducer,
+    shopItems: reducer,
 });
 export default rootReducer;

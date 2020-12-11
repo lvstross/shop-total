@@ -1,11 +1,26 @@
-import { INCREMENT, DECREMENT } from './types';
-export const increaseCounter = () => {
+import {
+    ADD_ITEM,
+    REMOVE_ITEM,
+    UPDATE_ITEM,
+    ShopItem,
+    RemoveItemPayload,
+} from './types';
+
+export const addItem = (payload: ShopItem) => {
     return {
-        type: INCREMENT,
+        type: ADD_ITEM,
+        payload,
     };
 };
-export const decreaseCounter = () => {
+export const removeItem = (payload: RemoveItemPayload) => {
     return {
-       type: DECREMENT,
+       type: REMOVE_ITEM,
+       payload,
     };
 };
+export const updateItem = (payload: ShopItem) => {
+    return {
+        type: UPDATE_ITEM,
+        payload,
+    };
+}

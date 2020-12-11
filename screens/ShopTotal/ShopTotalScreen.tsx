@@ -1,50 +1,39 @@
-import React, { useState } from 'react';
-import { FlatList, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { FlatList } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 import randomString from 'random-string-simple';
+import { ADD_ITEM } from '../../redux/ShopItems/types';
 import { FontSize } from '../../lib/variables';
-import Colors from '../../lib/Colors';
-import { Container, ItemContainer, ItemSection, ItemText, AddButton } from './styled';
-
-interface ItemProps {
-  id: String;
-  name: String;
-}
+import { Container, AddButton } from './styled';
+import ShopItemView from './ShopItemView';
 
 export default function ShopTotalScreen() {
-  const [items, setItems] = useState<ItemProps[]>([]);
+  const shopItems = useSelector((state: any) => state.shopItems.shopItems);
+  const dispatch = useDispatch();
 
   const handleAddItem = () => {
-    const newItem = { id: randomString(25), name: 'New Item' };
-    console.log(newItem);
-    setItems([...items, newItem]);
+    const newItem = {
+      id: randomString(25),
+      name: 'New Item',
+      price: 0.00,
+    };
+
+    dispatch({ type: ADD_ITEM, payload: newItem })
   };
 
-  const handleRemoveItem = (id: String) => {
-    const filteredItems = items.filter(item => item.id != id);
-    setItems([...filteredItems]);
-  };
-
-  const renderItem = ({ item }) => (
-    <ItemContainer>
-      <ItemSection flex={10}>
-        <ItemText>{item.name}</ItemText>
-      </ItemSection>
-      <ItemSection flex={2}>
-        <AntDesign name="edit" size={FontSize.m} color={Colors.black[900]} />
-      </ItemSection>
-      <ItemSection flex={1}>
-        <TouchableOpacity onPress={() => handleRemoveItem(item.id)}>
-          <AntDesign name="delete" size={FontSize.m} color={Colors.red[100]} />
-        </TouchableOpacity>
-      </ItemSection>
-    </ItemContainer>
+  const renderItem = ({ item }: any) => (
+    <ShopItemView
+      id={item.id}
+      name={item.name}
+      price={item.price} 
+    />
   );
 
   return (
     <Container>
       <FlatList
-        data={items}
+        data={shopItems}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
