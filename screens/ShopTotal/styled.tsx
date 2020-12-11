@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { ScrollView, TouchableOpacity } from 'react-native';
-import Colors from '../../lib/Colors';
-import { Spacing } from '../../lib/variables';
-import { Text, View } from '../../components/Themed';
+import Colors from 'lib/Colors';
+import { Spacing } from 'lib/variables';
+import { Text, View } from 'components/Themed';
 
 export const StyledScrollView = styled(ScrollView)`
     background-color: #fff;
@@ -11,6 +11,7 @@ export const StyledScrollView = styled(ScrollView)`
 export const Container = styled(View)`
     flex: 1;
     padding: 12px;
+    padding-bottom: 60px;
     align-items: stretch;
     justify-content: flex-start;
 `;
@@ -45,10 +46,19 @@ export const AddButton = styled(TouchableOpacity)`
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    height: 45px;
+    border-radius: 8px;
     background-color: ${Colors.lightBlue[100]};
-    box-shadow: 0px 0px 2px ${Colors.black[900]}
+`;
+
+export const TotalDisplay = styled(View)`
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background-color: ${Colors.lightBlue[100]};
+    padding: 10px;
+    border-radius: 8px;
 `;

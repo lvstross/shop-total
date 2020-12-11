@@ -1,4 +1,10 @@
-import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM, InitialState } from './types';
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  UPDATE_ITEM,
+  GET_TOTAL,
+  InitialState,
+} from './types';
 
 const INITIAL_STATE: InitialState = {
     shopItems: [],
@@ -6,8 +12,6 @@ const INITIAL_STATE: InitialState = {
 };
 
 const reducer = (state = INITIAL_STATE, action: any) => {
-    console.log('state: ', state);
-    console.log('action', action);
     switch (action.type) {
         case ADD_ITEM:
           return {
@@ -30,7 +34,17 @@ const reducer = (state = INITIAL_STATE, action: any) => {
           return {
             ...state, shopItems: updatedItems,
           };
-         default: return state;
+        case GET_TOTAL:
+          let total = 0;
+          state.shopItems.forEach(item => {
+            const intValue = parseFloat(item.price);
+            const newTotal = total + intValue;
+            total = Number(newTotal.toFixed(2));
+          });
+          return {
+            ...state, shopTotal: total,
+          };
+        default: return state;
     }
 };
 

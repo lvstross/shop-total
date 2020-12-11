@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { TouchableOpacity, TextInput } from 'react-native';
+import { TouchableOpacity, TextInput, KeyboardType } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { ShopItem, REMOVE_ITEM, UPDATE_ITEM } from '../../redux/ShopItems/types';
-import { FontSize } from '../../lib/variables';
-import Colors from '../../lib/Colors';
+import { ShopItem } from 'redux/ShopItems/types';
+import { updateItem, removeItem, getTotal } from 'redux/ShopItems/actions';
+import { FontSize } from 'lib/variables';
+import Colors from 'lib/Colors';
 import { ItemContainer, ItemSection, ItemText } from './styled';
 
 export default function ShopItemView({ id, name, price }: ShopItem) {
@@ -15,46 +16,61 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
     const closeEdit = () => {
         setEditName(false);
         setEditPrice(false);
+        dispatch(getTotal());
     }
+
+    const handleNameChange = (text: string) =>
+        dispatch(updateItem({ id, name: text, price, }));
+
+    const handlePriceChange = (text: string) =>
+        dispatch(updateItem({ id, name, price: text, }));
+
+    const handleDelete = () => {
+        dispatch(removeItem(id));
+        dispatch(getTotal());
+    }
+
+    const renderInput = (value: String | Number, onChange: any, keyboard: KeyboardType) => {
+        return (            
+            <TextInput
+                value={value}
+                style={{ height: 30, borderColor: 'gray', borderBottomWidth: 1, fontSize: 18 }}
+                onChangeText={onChange}
+                autoFocus
+                clearTextOnFocus
+                keyboardType={keyboard}
+                onFocus={() => {
+                    if (value === 'New Item') {
+                        onChange('');
+                    }
+                }}
+                onBlur={closeEdit}
+            />
+        );
+    };
 
     return (
         <ItemContainer>
             <ItemSection flex={5}>
-                {editName ? (
-                    <TextInput
-                        style={{ height: 30, borderColor: 'gray', borderBottomWidth: 1 }}
-                        onChangeText={text => dispatch({ type: UPDATE_ITEM, payload: { id, name: text, price, } })}
-                        value={name}
-                    />
-                ) : (
+                {editName ? renderInput(name!, handleNameChange, 'default') : (
                     <TouchableOpacity onPress={() => setEditName(true)}>
                         <ItemText>{name}</ItemText>
                     </TouchableOpacity>
                 )}
             </ItemSection>
             <ItemSection flex={4}>
-                {editPrice ? (
-                    <TextInput
-                        style={{ height: 30, borderColor: 'gray', borderBottomWidth: 1 }}
-                        onChangeText={text => dispatch({ type: UPDATE_ITEM, payload: { id, name, price: text, } })}
-                        value={price}
-                    />
-                ) : (
+                {editPrice ? renderInput(price!, handlePriceChange, 'decimal-pad') : (
                     <TouchableOpacity onPress={() => setEditPrice(true)}>
                         <ItemText>${price}</ItemText>
                     </TouchableOpacity>
                 )}
             </ItemSection>
             <ItemSection flex={1}>
-                {editName || editPrice ? (
-                    <TouchableOpacity onPress={closeEdit}>
-                        <AntDesign name="check" size={FontSize.m} color={Colors.red[100]} />
-                    </TouchableOpacity>
-                ) : (
-                    <TouchableOpacity onPress={() => dispatch({ type: REMOVE_ITEM, payload: id })}>
+                {!editName || !editPrice ? (
+                    <TouchableOpacity onPress={handleDelete}>
                         <AntDesign name="delete" size={FontSize.m} color={Colors.red[100]} />
                     </TouchableOpacity>
-                )}
+                ) : null}
             </ItemSection>
         </ItemContainer>
     );
