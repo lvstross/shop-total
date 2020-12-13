@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FlatList, Platform, KeyboardAvoidingView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
@@ -13,6 +13,7 @@ export default function ShopTotalScreen() {
   const shopItems = useSelector(selectors.getShopItems);
   const shopTotal = useSelector(selectors.getShopTotal);
   const dispatch = useDispatch();
+  let flatListRef = useRef();
 
   const handleAddItem = () => {
     const newItem = {
@@ -21,7 +22,7 @@ export default function ShopTotalScreen() {
       price: 0.00,
     };
 
-    dispatch(addItem(newItem))
+    dispatch(addItem(newItem));
   };
 
   const renderItem = ({ item }: any) => (
@@ -40,9 +41,11 @@ export default function ShopTotalScreen() {
         keyboardVerticalOffset={95}
       >
         <FlatList
+          ref={ref => flatListRef = ref}
           data={shopItems}
           renderItem={renderItem}
           keyExtractor={item => item.id}
+          onContentSizeChange={() => flatListRef.scrollToEnd({animated: true})}
         />
       </KeyboardAvoidingView>
       <TotalDisplay>
