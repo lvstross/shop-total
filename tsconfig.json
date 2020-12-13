@@ -16,9 +16,8 @@
       "hooks": ["./hooks/*"],
       "lib": ["./lib/*"],
       "navigation": ["./navigation/*"],
-      "redux": ["./redux/*"],
+      "store": ["./store/*"],
       "screens": ["./screens/*"]
     }
-  },
-  "exclude": ["node_modules"]
+  }
 }

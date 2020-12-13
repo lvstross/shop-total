@@ -15,7 +15,7 @@ module.exports = function(api) {
             hooks: "./hooks",
             lib: "./lib",
             navigation: "./navigation",
-            redux: "./redux",
+            store: "./store",
           },
         },
       ],
