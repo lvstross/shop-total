@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import randomString from 'random-string-simple';
 import { addItem } from 'store/ShopItems/actions';
 import * as selectors from 'store/ShopItems/selectors';
-import { FontSize } from 'lib/variables';
+import { FontSize } from 'constants/Variables';
 import { Container, AddButton, TotalDisplay, ItemText } from './styled';
 import ShopItemView from './ShopItemView';
 

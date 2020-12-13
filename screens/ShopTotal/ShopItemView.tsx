@@ -4,8 +4,8 @@ import { TouchableOpacity, TextInput, KeyboardType } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { ShopItem } from 'store/ShopItems/types';
 import { updateItem, removeItem, getTotal } from 'store/ShopItems/actions';
-import { FontSize } from 'lib/variables';
-import Colors from 'lib/Colors';
+import { FontSize } from 'constants/Variables';
+import Colors from 'constants/Colors';
 import { ItemContainer, ItemSection, ItemText } from './styled';
 
 export default function ShopItemView({ id, name, price }: ShopItem) {

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { ScrollView, TouchableOpacity } from 'react-native';
-import Colors from 'lib/Colors';
-import { Spacing } from 'lib/variables';
+import Colors from 'constants/Colors';
+import { Spacing } from 'constants/Variables';
 import { Text, View } from 'components/Themed';
 
 export const StyledScrollView = styled(ScrollView)`

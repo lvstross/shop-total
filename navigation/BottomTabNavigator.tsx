@@ -3,10 +3,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import ShopTotalScreen from '../screens/ShopTotal/ShopTotalScreen';
-import InfoScreen from '../screens/InfoScreen';
+import Colors from 'constants/Colors';
+import useColorScheme from 'hooks/useColorScheme';
+import ShopTotalScreen from 'screens/ShopTotal/ShopTotalScreen';
+import InfoScreen from 'screens/InfoScreen';
 import { BottomTabParamList, ShopTotalParamList, InfoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -17,7 +17,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Shop Total"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ activeTintColor: Colors.Theme[colorScheme].tint }}>
       <BottomTab.Screen
         name="Shop Total"
         component={TabOneNavigator}
