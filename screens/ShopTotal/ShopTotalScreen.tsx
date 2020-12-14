@@ -23,6 +23,7 @@ export default function ShopTotalScreen() {
     };
 
     dispatch(addItem(newItem));
+    flatListRef.scrollToEnd({animated: true});
   };
 
   const renderItem = ({ item }: any) => (
@@ -45,7 +46,6 @@ export default function ShopTotalScreen() {
           data={shopItems}
           renderItem={renderItem}
           keyExtractor={item => item.id}
-          onContentSizeChange={() => flatListRef.scrollToEnd({animated: true})}
         />
       </KeyboardAvoidingView>
       <TotalDisplay>

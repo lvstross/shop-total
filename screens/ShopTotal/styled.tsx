@@ -3,9 +3,17 @@ import { ScrollView, TouchableOpacity } from 'react-native';
 import Colors from 'constants/Colors';
 import { Spacing } from 'constants/Variables';
 import { Text, View } from 'components/Themed';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 export const StyledScrollView = styled(ScrollView)`
     background-color: #fff;
+`;
+
+export const CenteredView = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    margin-top: 22px;
 `;
 
 export const Container = styled(View)`
@@ -41,7 +49,7 @@ export const ItemText = styled(Text)`
     font-size: 18px;
 `;
 
-export const AddButton = styled(TouchableOpacity)`
+export const AddButton = styled.TouchableOpacity`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,6 +62,35 @@ export const AddButton = styled(TouchableOpacity)`
     background-color: ${Colors.lightBlue[100]};
 `;
 
+export const ModalHeaderText = styled(Text)`
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: center;
+`;
+
+interface ModalButtonProps {
+    backgroundColor: String;
+}
+
+export const ModalButton = styled.TouchableHighlight`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 30%;
+    height: 45px;
+    border-radius: 8px;
+    ${({ backgroundColor }: ModalButtonProps) => backgroundColor && `
+        background-color: ${backgroundColor};
+    `}
+`;
+
+export const ModalButtonText = styled(Text)`
+    color: white;
+    font-weight: bold;
+    text-align: center;
+`;
+
 export const TotalDisplay = styled(View)`
     position: absolute;
     left: 10px;
@@ -61,4 +98,13 @@ export const TotalDisplay = styled(View)`
     background-color: ${Colors.lightBlue[100]};
     padding: 10px;
     border-radius: 8px;
+`;
+
+export const ModalView = styled.View`
+    margin: 20px;
+    padding: 35px;
+    background-color: white;
+    border-radius: 5px;
+    align-items: center;
+    box-shadow: 0px 0px 2px #000;
 `;

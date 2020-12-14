@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { TouchableOpacity, TextInput, KeyboardType } from 'react-native';
+import {
+    TouchableOpacity,
+    TextInput,
+    Modal,
+    KeyboardType,
+} from 'react-native';
+import FlexRow from 'components/UI/FlexRow';
 import { AntDesign } from '@expo/vector-icons';
 import { ShopItem } from 'store/ShopItems/types';
 import { updateItem, removeItem, getTotal } from 'store/ShopItems/actions';
 import { FontSize } from 'constants/Variables';
 import Colors from 'constants/Colors';
-import { ItemContainer, ItemSection, ItemText } from './styled';
+import {
+    ItemContainer,
+    ItemSection,
+    ItemText,
+    ModalButton,
+    CenteredView,
+    ModalButtonText,
+    ModalHeaderText,
+    ModalView,
+} from './styled';
 
 export default function ShopItemView({ id, name, price }: ShopItem) {
     const dispatch = useDispatch();
     const [editName, setEditName] = useState(false);
     const [editPrice, setEditPrice] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     const closeEdit = () => {
         setEditName(false);
@@ -50,28 +66,55 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
     };
 
     return (
-        <ItemContainer>
-            <ItemSection flex={5}>
-                {editName ? renderInput(name!, handleNameChange, 'default') : (
-                    <TouchableOpacity onPress={() => setEditName(true)}>
-                        <ItemText>{name}</ItemText>
-                    </TouchableOpacity>
-                )}
-            </ItemSection>
-            <ItemSection flex={4}>
-                {editPrice ? renderInput(price!, handlePriceChange, 'decimal-pad') : (
-                    <TouchableOpacity onPress={() => setEditPrice(true)}>
-                        <ItemText>${price}</ItemText>
-                    </TouchableOpacity>
-                )}
-            </ItemSection>
-            <ItemSection flex={1}>
-                {!editName || !editPrice ? (
-                    <TouchableOpacity onPress={handleDelete}>
-                        <AntDesign name="delete" size={FontSize.m} color={Colors.red[100]} />
-                    </TouchableOpacity>
-                ) : null}
-            </ItemSection>
-        </ItemContainer>
+        <>
+            <ItemContainer>
+                <ItemSection flex={5}>
+                    {editName ? renderInput(name!, handleNameChange, 'default') : (
+                        <TouchableOpacity onPress={() => setEditName(true)}>
+                            <ItemText>{name}</ItemText>
+                        </TouchableOpacity>
+                    )}
+                </ItemSection>
+                <ItemSection flex={4}>
+                    {editPrice ? renderInput(price!, handlePriceChange, 'decimal-pad') : (
+                        <TouchableOpacity onPress={() => setEditPrice(true)}>
+                            <ItemText>${price}</ItemText>
+                        </TouchableOpacity>
+                    )}
+                </ItemSection>
+                <ItemSection flex={1}>
+                    {!editName || !editPrice ? (
+                        <TouchableOpacity onLongPress={handleDelete} onPress={() => setModalVisible(true)}>
+                            <AntDesign name="delete" size={FontSize.m} color={Colors.red[100]} />
+                        </TouchableOpacity>
+                    ) : null}
+                </ItemSection>
+            </ItemContainer>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+            >
+                <CenteredView>
+                    <ModalView>
+                        <ModalHeaderText>Are you sure you want to delete this item?</ModalHeaderText>
+                        <FlexRow>
+                            <ModalButton
+                                backgroundColor={Colors.red[100]}
+                                onPress={() => handleDelete()}
+                            >
+                                <ModalButtonText>Yes</ModalButtonText>
+                            </ModalButton>
+                            <ModalButton
+                                backgroundColor={Colors.grey[400]}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <ModalButtonText>No</ModalButtonText>
+                            </ModalButton>
+                        </FlexRow>
+                    </ModalView>
+                </CenteredView>
+            </Modal>
+        </>
     );
 }
