@@ -1,27 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-    TouchableOpacity,
-    TextInput,
-    Modal,
-    KeyboardType,
-} from 'react-native';
-import FlexRow from 'components/UI/FlexRow';
+import { TouchableOpacity, TextInput, KeyboardType } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { ShopItem } from 'store/ShopItems/types';
 import { updateItem, removeItem, getTotal } from 'store/ShopItems/actions';
 import { FontSize } from 'constants/Variables';
 import Colors from 'constants/Colors';
-import {
-    ItemContainer,
-    ItemSection,
-    ItemText,
-    ModalButton,
-    CenteredView,
-    ModalButtonText,
-    ModalHeaderText,
-    ModalView,
-} from './styled';
+import ConfirmModal from 'components/UI/Modal/ConfirmModal';
+import { ItemContainer, ItemSection, ItemText } from './styled';
 
 export default function ShopItemView({ id, name, price }: ShopItem) {
     const dispatch = useDispatch();
@@ -90,31 +76,12 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
                     ) : null}
                 </ItemSection>
             </ItemContainer>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-            >
-                <CenteredView>
-                    <ModalView>
-                        <ModalHeaderText>Are you sure you want to delete this item?</ModalHeaderText>
-                        <FlexRow>
-                            <ModalButton
-                                backgroundColor={Colors.red[100]}
-                                onPress={() => handleDelete()}
-                            >
-                                <ModalButtonText>Yes</ModalButtonText>
-                            </ModalButton>
-                            <ModalButton
-                                backgroundColor={Colors.grey[400]}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <ModalButtonText>No</ModalButtonText>
-                            </ModalButton>
-                        </FlexRow>
-                    </ModalView>
-                </CenteredView>
-            </Modal>
+            <ConfirmModal
+                isOpen={modalVisible}
+                confirm={handleDelete}
+                decline={() => setModalVisible(!modalVisible)}
+                headerText="Are you sure you want to delete this item?"
+            />
         </>
     );
 }

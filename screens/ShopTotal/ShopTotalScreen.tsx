@@ -6,7 +6,8 @@ import randomString from 'random-string-simple';
 import { addItem } from 'store/ShopItems/actions';
 import * as selectors from 'store/ShopItems/selectors';
 import { FontSize } from 'constants/Variables';
-import { Container, AddButton, TotalDisplay, ItemText } from './styled';
+import { Container } from 'components/UI/UI';
+import { AddButton, TotalDisplay, ItemText } from './styled';
 import ShopItemView from './ShopItemView';
 
 export default function ShopTotalScreen() {
