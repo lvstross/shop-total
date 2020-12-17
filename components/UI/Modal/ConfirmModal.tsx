@@ -18,7 +18,7 @@ export interface ConfirmModalProps {
     headerText?: String;
 }
 
-function ConfirmModal({ isOpen, confirm, decline, headerText }: ConfirmModalProps) {
+export default function ConfirmModal({ isOpen, confirm, decline, headerText }: ConfirmModalProps) {
     const theme = useColorScheme();
     return (
         <Modal animationType="slide" transparent={true} visible={isOpen}>
@@ -44,5 +44,3 @@ function ConfirmModal({ isOpen, confirm, decline, headerText }: ConfirmModalProp
         </Modal>
     );
 }
-
-export default ConfirmModal;

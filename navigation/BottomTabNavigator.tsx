@@ -1,10 +1,10 @@
+import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
 
 import Colors from 'constants/Colors';
 import useColorScheme from 'hooks/useColorScheme';
+
 import ShopListsNavigator from 'screens/ShopLists/navigation';
 import ShopTotalNavigator from 'screens/ShopTotal/navigations';
 import InfoScreenNavigator from 'screens/InfoScreen/navigation';

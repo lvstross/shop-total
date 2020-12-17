@@ -1,8 +1,10 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import ShopTotalScreen from './ShopTotalScreen';
+
 import Colors from 'constants/Colors';
 import useColorScheme from 'hooks/useColorScheme';
+
+import ShopTotalScreen from './ShopTotalScreen';
 
 type ShopTotalParamList = {
     ShopTotalScreen: undefined;

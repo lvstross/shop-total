@@ -12,6 +12,14 @@ export const getThemedBackground = ({ backgroundColor }: BackgroundStyleProps) =
   background-color: ${backgroundColor};
 `;
 
+interface TextColorProps {
+  color?: String;
+}
+
+export const getThemedText = ({ color }: TextColorProps) => color && `
+  color: ${color};
+`;
+
 export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.Theme.light & keyof typeof Colors.Theme.dark

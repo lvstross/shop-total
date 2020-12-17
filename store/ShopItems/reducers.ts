@@ -3,6 +3,7 @@ import {
   REMOVE_ITEM,
   UPDATE_ITEM,
   GET_TOTAL,
+  CLEAR_ALL_ITEMS,
   InitialState,
 } from './types';
 
@@ -33,6 +34,10 @@ const reducer = (state = INITIAL_STATE, action: any) => {
           });
           return {
             ...state, shopItems: updatedItems,
+          };
+        case CLEAR_ALL_ITEMS:
+          return {
+            ...state, shopItems: [],
           };
         case GET_TOTAL:
           let total = 0;

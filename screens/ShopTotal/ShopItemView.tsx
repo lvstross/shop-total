@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TouchableOpacity, TextInput, KeyboardType } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { ShopItem } from 'store/ShopItems/types';
-import { updateItem, removeItem, getTotal } from 'store/ShopItems/actions';
+
+import Colors from 'constants/Colors';
 import { FontSize } from 'constants/Variables';
 import useColorScheme from 'hooks/useColorScheme';
-import Colors from 'constants/Colors';
-import ConfirmModal from 'components/UI/Modal/ConfirmModal';
+
+import { ShopItem } from 'store/ShopItems/types';
+import { showModal, closeModal } from 'store/ConfirmModal/actions';
+import { updateItem, removeItem, getTotal } from 'store/ShopItems/actions';
+
 import { ItemContainer, ItemSection, ItemText } from './styled';
 
 export default function ShopItemView({ id, name, price }: ShopItem) {
-    const dispatch = useDispatch();
+    const theme = useColorScheme();
     const [editName, setEditName] = useState(false);
     const [editPrice, setEditPrice] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
-    const theme = useColorScheme();
+    const dispatch = useDispatch();
 
     const closeEdit = () => {
         setEditName(false);
@@ -28,10 +30,23 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
 
     const handlePriceChange = (text: string) =>
         dispatch(updateItem({ id, name, price: text, }));
+    
+    const handleCloseModal = () => {
+        dispatch(closeModal());
+    };
 
     const handleDelete = () => {
+        handleCloseModal();
         dispatch(removeItem(id));
         dispatch(getTotal());
+    };
+
+    const handleOpenModal = () => {
+        dispatch(showModal({
+            confirm: handleDelete as typeof Function,
+            decline: handleCloseModal as typeof Function,
+            headerText: 'Are you sure you want to delete this item?',
+        }));
     }
 
     const renderInput = (value: String | Number, onChange: any, keyboard: KeyboardType) => {
@@ -78,18 +93,12 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
                 </ItemSection>
                 <ItemSection flex={1} backgroundColor={Colors.Theme[theme].foreground}>
                     {!editName || !editPrice ? (
-                        <TouchableOpacity onLongPress={handleDelete} onPress={() => setModalVisible(true)}>
+                        <TouchableOpacity onLongPress={handleDelete} onPress={handleOpenModal}>
                             <AntDesign name="delete" size={FontSize.m} color={Colors.red[100]} />
                         </TouchableOpacity>
                     ) : null}
                 </ItemSection>
             </ItemContainer>
-            <ConfirmModal
-                isOpen={modalVisible}
-                confirm={handleDelete}
-                decline={() => setModalVisible(!modalVisible)}
-                headerText="Are you sure you want to delete this item?"
-            />
         </>
     );
 }

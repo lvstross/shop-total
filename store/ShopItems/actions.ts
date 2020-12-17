@@ -3,6 +3,7 @@ import {
     REMOVE_ITEM,
     UPDATE_ITEM,
     GET_TOTAL,
+    CLEAR_ALL_ITEMS,
     ShopItem,
 } from './types';
 
@@ -24,8 +25,5 @@ export const updateItem = (payload: ShopItem) => {
         payload,
     };
 }
-export const getTotal = () => {
-    return {
-        type: GET_TOTAL,
-    };
-}
+export const getTotal = () => ({ type: GET_TOTAL })
+export const clearAllItems = () => ({ type: CLEAR_ALL_ITEMS });
