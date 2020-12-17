@@ -8,15 +8,3 @@ export type BottomTabParamList = {
   "Shop Total": undefined;
   "Info": undefined;
 };
-
-export type ShopListsParamLists = {
-  ShopListsScreen: undefined;
-}
-
-export type ShopTotalParamList = {
-  ShopTotalScreen: undefined;
-};
-
-export type InfoParamList = {
-  InfoScreen: undefined;
-};

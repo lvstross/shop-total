@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from 'components/Themed';
-import AppInfo from '../app.json';
+import AppInfo from '../../app.json';
 
-export default function TabTwoScreen() {
+export default function InfoScreen() {
   const AppVersion = AppInfo.expo.version;
 
   return (
