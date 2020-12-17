@@ -1,20 +1,24 @@
 import React, { useRef } from 'react';
 import { FlatList, Platform, KeyboardAvoidingView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import randomString from 'random-string-simple';
 import { addItem } from 'store/ShopItems/actions';
 import * as selectors from 'store/ShopItems/selectors';
 import { FontSize } from 'constants/Variables';
 import { Container } from 'components/UI/UI';
-import { AddButton, TotalDisplay, ItemText } from './styled';
+import useColorScheme from 'hooks/useColorScheme';
+import Colors from 'constants/Colors';
+import { AddButton, TotalDisplay, TotalText } from './styled';
 import ShopItemView from './ShopItemView';
+
 
 export default function ShopTotalScreen() {
   const shopItems = useSelector(selectors.getShopItems);
   const shopTotal = useSelector(selectors.getShopTotal);
   const dispatch = useDispatch();
   let flatListRef = useRef();
+  const theme = useColorScheme();
 
   const handleAddItem = () => {
     const newItem = {
@@ -24,7 +28,7 @@ export default function ShopTotalScreen() {
     };
 
     dispatch(addItem(newItem));
-    flatListRef.scrollToEnd({animated: true});
+    flatListRef?.scrollToEnd({animated: true});
   };
 
   const renderItem = ({ item }: any) => (
@@ -50,10 +54,10 @@ export default function ShopTotalScreen() {
         />
       </KeyboardAvoidingView>
       <TotalDisplay>
-        <ItemText>${shopTotal.toFixed(2)}</ItemText>
+        <TotalText>${shopTotal.toFixed(2)}</TotalText>
       </TotalDisplay>
       <AddButton onPress={handleAddItem}>
-        <AntDesign name="plus" size={FontSize.l} color="black" />
+        <MaterialCommunityIcons name="card-plus-outline" size={FontSize.l} color={Colors.Theme[theme].text} />
       </AddButton>
     </Container>
   );

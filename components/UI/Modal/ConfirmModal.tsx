@@ -3,6 +3,7 @@ import { Modal } from 'react-native';
 import { CenteredView } from 'components/UI/UI';
 import FlexRow from 'components/UI/FlexRow';
 import Colors from 'constants/Colors';
+import useColorScheme from 'hooks/useColorScheme';
 import {
     ModalButton,
     ModalButtonText,
@@ -18,12 +19,13 @@ export interface ConfirmModalProps {
 }
 
 function ConfirmModal({ isOpen, confirm, decline, headerText }: ConfirmModalProps) {
+    const theme = useColorScheme();
     return (
         <Modal animationType="slide" transparent={true} visible={isOpen}>
             <CenteredView>
-                <ModalView>
+                <ModalView backgroundColor={Colors.Theme[theme].foreground}>
                     {headerText ? <ModalHeaderText>{headerText}</ModalHeaderText> : null}
-                    <FlexRow>
+                    <FlexRow backgroundColor={Colors.Theme[theme].foreground}>
                         <ModalButton
                             backgroundColor={Colors.red[100]}
                             onPress={confirm}

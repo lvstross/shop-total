@@ -1,24 +1,23 @@
 import styled from 'styled-components/native';
-import Colors from 'constants/Colors';
 import { Spacing } from 'constants/Variables';
-import { Text, View } from 'components/Themed';
+import { Text, View, getThemedBackground } from 'components/Themed';
 
 export const ItemContainer = styled(View)`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: ${Colors.grey[100]};
     padding: ${Spacing.m}px;
     margin-bottom: ${Spacing.s}px;
     border-radius: 8px;
 `;
 
 interface ItemSectionProps {
-    flex: Number;
+    backgroundColor?: String;
+    flex?: Number;
 }
 
 export const ItemSection = styled(View)`
-    background-color: ${Colors.grey[100]};
+    ${getThemedBackground}
     ${({ flex }: ItemSectionProps) => flex && `
         flex: ${flex};
     `}
@@ -26,6 +25,11 @@ export const ItemSection = styled(View)`
 
 export const ItemText = styled(Text)`
     font-size: 18px;
+`;
+
+export const TotalText = styled(Text)`
+    font-size: 20px;
+    font-weight: bold;
 `;
 
 export const AddButton = styled.TouchableOpacity`
@@ -38,14 +42,12 @@ export const AddButton = styled.TouchableOpacity`
     width: 100px;
     height: 45px;
     border-radius: 8px;
-    background-color: ${Colors.lightBlue[100]};
 `;
 
 export const TotalDisplay = styled(View)`
     position: absolute;
     left: 10px;
     bottom: 10px;
-    background-color: ${Colors.lightBlue[100]};
     padding: 10px;
     border-radius: 8px;
 `;

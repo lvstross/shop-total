@@ -4,6 +4,14 @@ import { Text as DefaultText, View as DefaultView } from 'react-native';
 import Colors from 'constants/Colors';
 import useColorScheme from 'hooks/useColorScheme';
 
+interface BackgroundStyleProps {
+  backgroundColor?: String;
+}
+
+export const getThemedBackground = ({ backgroundColor }: BackgroundStyleProps) => backgroundColor && `
+  background-color: ${backgroundColor};
+`;
+
 export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.Theme.light & keyof typeof Colors.Theme.dark

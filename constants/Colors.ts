@@ -6,6 +6,7 @@ export default {
     light: {
       text: '#000',
       background: '#fff',
+      foreground: '#eaeaec',
       tint: tintColorLight,
       tabIconDefault: '#ccc',
       tabIconSelected: tintColorLight,
@@ -13,6 +14,7 @@ export default {
     dark: {
       text: '#fff',
       background: '#000',
+      foreground: '#2b2b2c',
       tint: tintColorDark,
       tabIconDefault: '#ccc',
       tabIconSelected: tintColorDark,
@@ -24,6 +26,7 @@ export default {
   grey: {
     100: '#eaeaec',
     400: '#838485',
+    800: '#2b2b2c',
   },
   lightBlue: {
     100: '#bffbff',
