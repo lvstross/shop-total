@@ -102,7 +102,7 @@ export default function ShopTotalScreen({ navigation }: any) {
         <TotalText>${shopTotal.toFixed(2)}</TotalText>
       </TotalDisplay>
       <AddButton onPress={handleAddItem}>
-        <MaterialCommunityIcons name="card-plus-outline" size={FontSize.l} color={Colors.Theme[theme].text} />
+        <MaterialCommunityIcons name="card-plus-outline" size={FontSize.l} color={Colors.Theme[theme].btnText} />
       </AddButton>
       <ConfirmModal
           isOpen={modalState.isOpen}
