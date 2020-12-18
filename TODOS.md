@@ -1,6 +1,6 @@
 # TODOS
 
-* [ ] Add swipe gestures to shop items instead of trash can icon with [react-native-gesture-handler](https://docs.swmansion.com/react-native-gesture-handler/docs/example).
+* [ ] Add swipe gestures to shop items instead of trash can icon with [react-native-gesture-handler](https://docs.swmansion.com/react-native-gesture-handler/docs/example) or Add swipe between screens [react-native-swipe-gestures](https://www.npmjs.com/package/react-native-swipe-gestures)
 * [ ] Add info screen information.
 * [ ] If no input given in item name field, reset to 'New Item'
 * [ ] Add placeholder for inputs.

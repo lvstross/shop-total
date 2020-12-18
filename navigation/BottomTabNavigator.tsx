@@ -1,5 +1,6 @@
 import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Colors from 'constants/Colors';
@@ -23,14 +24,14 @@ export default function BottomTabNavigator() {
         name="Lists"
         component={ShopListsNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="bars" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons name="grid" style={{ marginBottom: -3 }} size={30} color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Shop Total"
         component={ShopTotalNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="shoppingcart" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="bars" color={color} />,
         }}
       />
       <BottomTab.Screen

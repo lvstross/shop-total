@@ -76,22 +76,22 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
 
     return (
         <>
-            <ItemContainer style={{ backgroundColor: Colors.Theme[theme].foreground }}>
-                <ItemSection flex={5} backgroundColor={Colors.Theme[theme].foreground}>
+            <ItemContainer>
+                <ItemSection flex={5}>
                     {editName ? renderInput(name!, handleNameChange, 'default') : (
                         <TouchableOpacity onPress={() => setEditName(true)}>
                             <ItemText>{name}</ItemText>
                         </TouchableOpacity>
                     )}
                 </ItemSection>
-                <ItemSection flex={4} backgroundColor={Colors.Theme[theme].foreground}>
+                <ItemSection flex={4}>
                     {editPrice ? renderInput(price!, handlePriceChange, 'decimal-pad') : (
                         <TouchableOpacity onPress={() => setEditPrice(true)}>
                             <ItemText>${price}</ItemText>
                         </TouchableOpacity>
                     )}
                 </ItemSection>
-                <ItemSection flex={1} backgroundColor={Colors.Theme[theme].foreground}>
+                <ItemSection flex={1}>
                     {!editName || !editPrice ? (
                         <TouchableOpacity onLongPress={handleDelete} onPress={handleOpenModal}>
                             <AntDesign name="delete" size={FontSize.m} color={Colors.red[100]} />

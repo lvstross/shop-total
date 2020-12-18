@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { Spacing } from 'constants/Variables';
-import { Text, View, getThemedBackground } from 'components/Themed';
+import { Text, View, ForegroundView } from 'components/Themed';
 
 export const AddButton = styled.TouchableOpacity`
     display: flex;
@@ -14,7 +14,7 @@ export const AddButton = styled.TouchableOpacity`
     border-radius: 8px;
 `;
 
-export const ItemContainer = styled(View)`
+export const ItemContainer = styled(ForegroundView)`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,12 +24,10 @@ export const ItemContainer = styled(View)`
 `;
 
 interface ItemSectionProps {
-    backgroundColor?: String;
     flex?: Number;
 }
 
-export const ItemSection = styled(View)`
-    ${getThemedBackground}
+export const ItemSection = styled(ForegroundView)`
     ${({ flex }: ItemSectionProps) => flex && `
         flex: ${flex};
     `}
