@@ -29,8 +29,41 @@ export const ModalButton = styled.TouchableHighlight`
     ${getThemedBackground}
 `;
 
-export const ModalButtonText = styled(Text)`
+export const ModalButtonText = styled.Text`
     color: white;
     font-weight: bold;
     text-align: center;
+`;
+
+export const ActionButtonText = styled(Text)`
+    font-weight: bold;
+    text-align: center;
+`;
+
+export const ActionModalBackdrop = styled.View`
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+`;
+
+export const ActionModalView = styled(View)`
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 150px;
+    align-items: stretch;
+    flex-direction: column;
+    box-shadow: 0px 0px 2px #000;
+    ${getThemedBackground}
+`;
+
+export const ActionButton = styled.TouchableOpacity`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 50px;
+    border: 1px solid #bbb;
 `;

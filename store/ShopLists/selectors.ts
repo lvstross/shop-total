@@ -1,0 +1,1 @@
+export const getShopLists = (state: any) => state.shopLists.shopLists;

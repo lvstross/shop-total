@@ -19,5 +19,5 @@ export const GridInnerItem = styled(ForegroundView)`
     padding: 10px;
     height: 150px;
     margin: 10px;
-    border-radius: 10;
+    border-radius: 10px;
 `;
