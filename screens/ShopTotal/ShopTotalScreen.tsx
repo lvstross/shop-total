@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { FlatList, Platform, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
+import { FlatList, Platform, KeyboardAvoidingView } from 'react-native';
 import randomString from 'random-string-simple';
 import { useSelector, useDispatch } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -18,6 +18,7 @@ import useColorScheme from 'hooks/useColorScheme';
 import { Container } from 'components/UI/UI';
 import ConfirmModal from 'components/UI/Modal/ConfirmModal';
 import ActionModal from 'components/UI/Modal/ActionModal';
+import InputModal from 'components/UI/Modal/InputModal';
 import { HeaderButton } from 'components/UI/Buttons';
 
 import ShopItemView from './ShopItemView';
@@ -30,8 +31,11 @@ export default function ShopTotalScreen({ navigation }: any) {
   const shopTotal = useSelector(getShopTotal);
   const modalState = useSelector(getModalState);
   const [showActions, setShowActions] = useState(false);
+  const [showInputModal, setShowInputModal] = useState(false);
+  const [inputText, setInputText] = useState('');
   const dispatch = useDispatch();
   let flatListRef = useRef();
+  const hasShopTotalItems = shopItems.length > 0;
 
   const handleAddItem = () => {
     const newItem = {
@@ -47,12 +51,14 @@ export default function ShopTotalScreen({ navigation }: any) {
   const handleSaveList = () => {
     const newList = {
       id: randomString(25),
-      name: 'New List',
+      name: inputText || 'New List',
       list: [...shopItems],
     };
 
     dispatch(addList(newList));
     setShowActions(false);
+    setShowInputModal(false);
+    setInputText('');
     // @TODO: maybe ask if they want to delete the list after saving
     // dispatch(clearAllItems());
   };
@@ -76,10 +82,23 @@ export default function ShopTotalScreen({ navigation }: any) {
     }));
   }
 
+  const handleOpenInputModal = () => {
+    setShowInputModal(true);
+  };
+
+  const handleCloseInputModal = () => {
+    setShowInputModal(false);
+    setInputText('');
+  };
+
+  const handleOnInputChange = (text: string) => {
+    setInputText(text);
+  };
+
   const modalActions = [
     {
       text: 'Save List',
-      onPress: handleSaveList,
+      onPress: handleOpenInputModal,
     },
     {
       text: 'Clear All',
@@ -88,7 +107,7 @@ export default function ShopTotalScreen({ navigation }: any) {
   ];
 
   useEffect(() => {
-    if (shopItems.length > 0) {
+    if (hasShopTotalItems) {
       navigation.setOptions({
         headerRight: () => (
           <HeaderButton onPress={() => setShowActions(!showActions)}>
@@ -129,9 +148,11 @@ export default function ShopTotalScreen({ navigation }: any) {
           keyExtractor={item => item.id}
         />
       </KeyboardAvoidingView>
-      <TotalDisplay>
-        <TotalText>${shopTotal.toFixed(2)}</TotalText>
-      </TotalDisplay>
+      {hasShopTotalItems ? (
+        <TotalDisplay>
+          <TotalText>Total: ${shopTotal.toFixed(2)}</TotalText>
+        </TotalDisplay>
+      ) : null}
       <AddButton onPress={handleAddItem}>
         <MaterialCommunityIcons name="card-plus-outline" size={FontSize.l} color={Colors.Theme[theme].btnText} />
       </AddButton>
@@ -145,6 +166,16 @@ export default function ShopTotalScreen({ navigation }: any) {
         isOpen={showActions}
         onClose={() => setShowActions(false)}
         actionsItems={modalActions}
+      />
+      <InputModal
+        isOpen={showInputModal}
+        inputValue={inputText}
+        onChange={handleOnInputChange}
+        confirm={handleSaveList}
+        confirmText="Save"
+        decline={handleCloseInputModal}
+        declineText="Cancel"
+        headerText="What name would you like to give to your list?"
       />
     </Container>
   );

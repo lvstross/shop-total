@@ -14,8 +14,8 @@ export const GridOuterItem = styled(View)`
 `;
 
 export const GridInnerItem = styled(ForegroundView)`
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 10px;
     height: 150px;
     margin: 10px;

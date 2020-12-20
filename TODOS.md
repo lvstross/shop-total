@@ -8,6 +8,7 @@
 * [ ] Add useConfirmModal hook to make interacting with confirm modal easier.
 * [ ] Make sure shown prices have two decimal places.
 * [ ] Update Linking configuration file.
+* [ ] Turn all inputs into styled components with themeing.
 * [X] Add clear all button at the top right for quickly clearing item list
 * [X] Merge constatns and lib.
 * [X] Add [.scrollToEnd](https://reactnative.dev/docs/flatlist#scrolltoend) on shop item flat list upon adding a new item.
