@@ -30,3 +30,8 @@ export const GridItemHeader = styled(Text)`
     font-size: 24px;
     font-weight: bold;
 `;
+
+export const ScreenHeader = styled(Text)`
+    font-size: 32px;
+    font-weight: bold;
+`;

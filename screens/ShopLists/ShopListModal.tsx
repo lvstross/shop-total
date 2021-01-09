@@ -3,13 +3,16 @@ import { useSelector } from 'react-redux';
 import { FlatList } from 'react-native';
 import { getShopLists } from 'store/ShopLists/selectors';
 import { Container } from 'components/UI/UI';
+import Spacer from 'components/UI/Spacer';
+import { renderFloatValue } from 'utils';
 import { ItemContainer, ItemSection, ItemText, TotalDisplay, TotalText } from '../ShopTotal/styled';
-import { DragLine } from './styled';
+import { DragLine, ScreenHeader } from './styled';
 
 function ShopListModal({ route }: any) {
     const shopLists = useSelector(getShopLists);
     const listId = route?.params?.listId;
     const filteredList = shopLists.filter((list: any) => list.id === listId);
+    const listName = filteredList[0].name;
     const selectedList = filteredList[0].list;
     let total = 0;
     selectedList.forEach((item: any) => {
@@ -20,6 +23,8 @@ function ShopListModal({ route }: any) {
     return (
         <Container style={{ paddingTop: 70 }}>
             <DragLine />
+            <ScreenHeader>{listName}</ScreenHeader>
+            <Spacer />
             <FlatList
                 data={selectedList}
                 renderItem={({ item }) => {
@@ -37,7 +42,7 @@ function ShopListModal({ route }: any) {
                 keyExtractor={item => item.text}
             />
             <TotalDisplay>
-                <TotalText>Total: ${total.toFixed(2)}</TotalText>
+                <TotalText>Total: ${renderFloatValue(total)}</TotalText>
             </TotalDisplay>
         </Container>
     );

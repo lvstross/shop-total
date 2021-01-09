@@ -6,6 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import Colors from 'constants/Colors';
 import { FontSize } from 'constants/Variables';
 import useColorScheme from 'hooks/useColorScheme';
+import { renderFloatValue } from 'utils';
 
 import { ShopItem } from 'store/ShopItems/types';
 import { showModal, closeModal } from 'store/ConfirmModal/actions';
@@ -49,7 +50,12 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
         }));
     }
 
-    const renderInput = (value: String | Number, onChange: any, keyboard: KeyboardType) => {
+    const renderInput = (
+        value: String | Number,
+        onChange: any,
+        keyboard: KeyboardType,
+        defaultValue: String
+    ) => {
         return (            
             <TextInput
                 value={value}
@@ -69,7 +75,12 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
                         onChange('');
                     }
                 }}
-                onBlur={closeEdit}
+                onBlur={() => {
+                    if (value === '') {
+                        onChange(defaultValue);
+                    }
+                    closeEdit();
+                }}
             />
         );
     };
@@ -78,16 +89,16 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
         <>
             <ItemContainer>
                 <ItemSection flex={5}>
-                    {editName ? renderInput(name!, handleNameChange, 'default') : (
+                    {editName ? renderInput(name!, handleNameChange, 'default', 'New Item') : (
                         <TouchableOpacity onPress={() => setEditName(true)}>
                             <ItemText>{name}</ItemText>
                         </TouchableOpacity>
                     )}
                 </ItemSection>
                 <ItemSection flex={4}>
-                    {editPrice ? renderInput(price!, handlePriceChange, 'decimal-pad') : (
+                    {editPrice ? renderInput(price!, handlePriceChange, 'decimal-pad', '0') : (
                         <TouchableOpacity onPress={() => setEditPrice(true)}>
-                            <ItemText>${price}</ItemText>
+                            <ItemText>${renderFloatValue(price)}</ItemText>
                         </TouchableOpacity>
                     )}
                 </ItemSection>
