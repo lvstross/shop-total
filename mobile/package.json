@@ -1,5 +1,7 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "name": "mobile",
+  "version": "1.0.0",
+  "main": "__generated__/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "start:clean": "expo start -c",
@@ -7,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "postinstall": "expo-yarn-workspaces postinstall"
   },
   "jest": {
     "preset": "jest-expo"
@@ -18,6 +21,7 @@
     "@react-navigation/bottom-tabs": "^5.11.1",
     "@react-navigation/native": "^5.8.9",
     "@react-navigation/stack": "^5.12.6",
+    "cross-env": "^7.0.3",
     "expo": "~40.0.0",
     "expo-asset": "~8.2.1",
     "expo-constants": "~9.3.0",
@@ -39,6 +43,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "shared": "1.0.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
@@ -49,6 +54,7 @@
     "@types/redux-logger": "^3.0.8",
     "@types/redux-thunk": "^2.1.0",
     "@types/styled-components": "^5.1.4",
+    "expo-yarn-workspaces": "^1.5.1",
     "jest-expo": "~40.0.0",
     "typescript": "~4.0.0"
   },

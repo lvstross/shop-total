@@ -1,0 +1,14 @@
+{
+    "private": true,
+    "name": "shop-total",
+    "workspaces": ["mobile", "web", "shared"],
+    "author": "Levi Gonzales",
+    "license": "MIT",
+    "scripts": {
+        "mobile": "yarn workspace mobile",
+        "web": "yarn workspace web",
+        "shared": "yarn workspace shared",
+        "services": "yarn workspace services",
+        "clean": "rm -rf node_modules mobile/node_modules web/node_modules shared/node_modules"
+    }
+}
