@@ -4,12 +4,12 @@ import randomString from 'random-string-simple';
 import { useSelector, useDispatch } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { getModalState } from 'store/ConfirmModal/selectors';
-import { getShopItems, getShopTotal } from 'store/ShopItems/selectors';
-import { clearAllItems } from 'store/ShopItems/actions';
-import { addItem, getTotal } from 'store/ShopItems/actions';
-import { addList } from 'store/ShopLists/actions';
-import { showModal, closeModal } from 'store/ConfirmModal/actions';
+import { getModalState } from 'shared/store/ConfirmModal/selectors';
+import { getShopItems, getShopTotal } from 'shared/store/ShopItems/selectors';
+import { clearAllItems } from 'shared/store/ShopItems/actions';
+import { addItem, getTotal } from 'shared/store/ShopItems/actions';
+import { addList } from 'shared/store/ShopLists/actions';
+import { showModal, closeModal } from 'shared/store/ConfirmModal/actions';
 
 import Colors from 'constants/Colors';
 import { FontSize } from 'constants/Variables';

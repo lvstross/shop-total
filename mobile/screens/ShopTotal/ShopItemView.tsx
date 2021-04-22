@@ -8,9 +8,9 @@ import { FontSize } from 'constants/Variables';
 import useColorScheme from 'hooks/useColorScheme';
 import { renderFloatValue } from 'utils';
 
-import { ShopItem } from 'store/ShopItems/types';
-import { showModal, closeModal } from 'store/ConfirmModal/actions';
-import { updateItem, removeItem, getTotal } from 'store/ShopItems/actions';
+import { ShopItem } from 'shared/store/ShopItems/types';
+import { showModal, closeModal } from 'shared/store/ConfirmModal/actions';
+import { updateItem, removeItem, getTotal } from 'shared/store/ShopItems/actions';
 
 import { ItemContainer, ItemSection, ItemText } from './styled';
 

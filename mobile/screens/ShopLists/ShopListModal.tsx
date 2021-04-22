@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { FlatList } from 'react-native';
-import { getShopLists } from 'store/ShopLists/selectors';
+import { getShopLists } from 'shared/store/ShopLists/selectors';
 import { Container } from 'components/UI/UI';
 import Spacer from 'components/UI/Spacer';
 import { renderFloatValue } from 'utils';
