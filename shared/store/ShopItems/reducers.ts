@@ -5,6 +5,7 @@ import {
   GET_TOTAL,
   CLEAR_ALL_ITEMS,
   InitialState,
+  ShopItem,
 } from './types';
 
 const INITIAL_STATE: InitialState = {
@@ -41,8 +42,8 @@ const reducer = (state = INITIAL_STATE, action: any) => {
           };
         case GET_TOTAL:
           let total = 0;
-          state.shopItems.forEach(item => {
-            const intValue = parseFloat(item.price);
+          state.shopItems.forEach((item: ShopItem) => {
+            const intValue = parseFloat(item.price as string);
             const newTotal = total + intValue;
             total = Number(newTotal.toFixed(2));
           });
