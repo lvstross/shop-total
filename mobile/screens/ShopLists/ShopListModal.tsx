@@ -39,7 +39,7 @@ function ShopListModal({ route }: any) {
                         </ItemContainer>
                     );
                 }}
-                keyExtractor={item => item.text}
+                keyExtractor={item => item.id}
             />
             <TotalDisplay>
                 <TotalText>Total: ${renderFloatValue(total)}</TotalText>

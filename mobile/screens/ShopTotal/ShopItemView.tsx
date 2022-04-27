@@ -58,7 +58,7 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
     ) => {
         return (            
             <TextInput
-                value={value}
+                value={value as string}
                 style={{
                     color: Colors.Theme[theme].text,
                     height: 30,
@@ -98,7 +98,7 @@ export default function ShopItemView({ id, name, price }: ShopItem) {
                 <ItemSection flex={4}>
                     {editPrice ? renderInput(price!, handlePriceChange, 'decimal-pad', '0') : (
                         <TouchableOpacity onPress={() => setEditPrice(true)}>
-                            <ItemText>${renderFloatValue(price)}</ItemText>
+                            <ItemText>${renderFloatValue(price as number)}</ItemText>
                         </TouchableOpacity>
                     )}
                 </ItemSection>
